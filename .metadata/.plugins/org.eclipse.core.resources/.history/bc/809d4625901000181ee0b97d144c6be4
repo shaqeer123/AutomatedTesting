@@ -1,0 +1,81 @@
+package testingweek;
+import java.util.concurrent.TimeUnit;
+
+import org.junit.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class JUnitWxample {
+
+	private WebDriver webDriver;
+	private static final String BASE_URL = " http://thedemosite.co.uk";
+	@BeforeClass
+	public static void init() {
+		System.out.println("before class");
+		
+	}
+
+	@Before
+	public void setUp() {
+		System.out.println("before");
+		webDriver = new ChromeDriver();
+		webDriver.navigate().to(BASE_URL);
+	}	
+
+	@Test
+	public void testName() {
+		
+		WebElement aRef2 = webDriver.findElement(By.cssSelector("body > div > center > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr > td:nth-child(2) > p > small > a:nth-child(6)"));
+		aRef2.click();
+		
+		WebElement makeUserName = webDriver.findElement(By.name("username"));
+		makeUserName.sendKeys("needTo");
+		
+		WebElement makePassword = webDriver.findElement(By.name("password"));
+		makePassword.sendKeys("sleep");
+		
+		WebElement saveButton = webDriver.findElement(By.name("FormsButton2"));
+		saveButton.click();
+		
+		WebElement aRef1 = webDriver.findElement
+				(By.cssSelector("body > div > center > table > tbody > tr:nth-child(2) > td >"
+						+ " div > center > table > tbody > tr > td:nth-child(2) > p > small > a:nth-child(7)"));
+		aRef1.click();
+		
+		WebElement userName = webDriver.findElement
+				(By.name("username"));
+		
+		userName.sendKeys("needTO");
+		
+		WebElement userPassword = webDriver.findElement
+				(By.name("password"));
+
+		userPassword.sendKeys("sleep");
+		
+		WebElement logButton = webDriver.findElement(By.name("FormsButton2"));
+		
+		logButton.click();
+		
+		WebElement log = webDriver.findElement(By.cssSelector("body > table > tbody > tr > td.auto-style1 >"
+				+ " big > blockquote > blockquote > font > center > b"));
+		
+		Assert.assertTrue("login true", log.getText() != "**Successful Login**");
+		
+	}
+	
+
+	@After
+	public void cleanUp() {
+		System.out.println("after");
+		//webDriver.quit();
+	}
+	
+
+	@AfterClass
+	public static void tearDown() {System.out.println("After class");}
+	
+	//test plan, test code, git upload
+}

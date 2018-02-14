@@ -1,0 +1,38 @@
+package testingweek;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+public class GooglePage {
+	
+	@FindBy(css = "body > div > center > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr > td:nth-child(2) > p > small > a:nth-child(6)")
+	private WebElement addUserTab;
+
+	@FindBy(name = "username")
+	private WebElement userTabUserName;
+
+	@FindBy(name = "password")
+	private WebElement userTabPassword;
+	
+	@FindBy(name = "FormsButton2")
+	private WebElement userTabSave;
+	
+	public void clickUserTab() {
+		addUserTab.click();
+		userTabUserName.sendKeys("NeedTo");
+		userTabPassword.sendKeys("sleep");
+		userTabSave.click();
+	}
+	
+	@FindBy(css = "body > div > center > table > tbody > tr:nth-child(2) > td >"
+						+ " div > center > table > tbody > tr > td:nth-child(2) > p > small > a:nth-child(7)")
+	private WebElement loginTab;
+	
+	public void clickLoginTab() {
+		loginTab.click();
+		userTabUserName.sendKeys("NeedTo");
+		userTabPassword.sendKeys("sleep");
+		userTabSave.click();
+	}
+}
+
+
